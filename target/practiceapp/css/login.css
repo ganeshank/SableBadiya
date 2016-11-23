@@ -1,0 +1,33 @@
+body {
+	background-image: url("../media/login.jpg"); 
+	background-color: #fff;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+h2 {
+	font-family: changa one;
+	color: #fff;
+
+}
+
+.container {
+	background-color: #666699;
+	padding: 20px;
+	margin-top: 80px;
+	box-shadow: 10px 10px 20px grey;
+}
+
+.form-group label {
+	color: white;
+}
+
+form a {
+	color: #cccccc;
+}
+
+form a:hover {
+	color: #fff;
+}

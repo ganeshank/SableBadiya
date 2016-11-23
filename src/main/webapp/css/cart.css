@@ -1,0 +1,114 @@
+/*css for header*/
+#smallheader {
+	background-color: #339966;
+
+}
+
+#smallheader p a {
+	color: white;
+	font-family: sans-serif;
+}
+
+#smallheader p span {
+	color: white;
+	font-family: sans-serif;
+}
+
+#bigheader {
+	background-color: #339966;
+	padding-bottom: 1px;
+}
+
+#bigheader p input {
+	padding: 4px;
+    border: 0;
+    margin-left: 290px;
+    padding-left: 9px;
+    font-family: cursive;
+}
+
+#searchbutton {
+	border-radius: 0px;
+	margin-top: -2px;
+	font-family: verdana;
+	padding: 3px 9px;
+}
+
+#myNavbar ul li a {
+	font-family: verdana;
+	color: white;
+}
+
+#myNavbar ul li a:hover {
+	color: black;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: white;
+}
+
+.navbar {
+	margin-bottom: 4px;
+}
+/*.navbar-toggle {
+	border-color: white;
+}*/
+
+#mycart {
+	margin-left: 10px;
+
+}
+
+.input-group {
+	margin-bottom: 10px;
+}
+
+.table {
+	margin-top: 30px;
+}
+
+#totalamountdiv {
+	box-shadow: 5px 5px 5px grey;
+	margin-top: 30px;
+	padding: 5px 5px 30px 20px;
+	background-color: #ccccb3;
+	
+}
+
+
+
+#tom {
+	color: white;
+	margin-top: 11px;
+	font-size: 20px;
+}
+
+
+
+
+/*css for footer*/
+footer {
+	background-color: #339966;
+	margin-top: 122px;
+}
+
+footer .container .row .col-sm-4 p a {
+	color: white;
+	font-family: verdana;
+	text-decoration: none;
+}
+
+footer .container .row .col-sm-4 p a:hover {
+	color: black;
+	text-decoration: underline;
+	
+}
+
+footer .container .row p {
+	font-family: verdana;
+	color: white;
+}
+
+footer {
+	padding-top: 15px;
+}

@@ -1,0 +1,22 @@
+body {
+	background-image: url("../media/signup.jpg"); 
+	background-color: #fff;
+
+}
+
+h1 {
+	font-family: changa one;
+	color: #fff;
+
+}
+
+.container {
+	background-color: #666699;
+	padding: 20px;
+	margin-top: 130px;
+	box-shadow: 10px 10px 20px grey;
+}
+
+.form-group label {
+	color: white;
+}

@@ -1,0 +1,228 @@
+/*css for header*/
+#smallheader {
+	background-color: #339966;
+
+}
+
+#smallheader p a {
+	color: white;
+	font-family: sans-serif;
+}
+
+#smallheader p span {
+	color: white;
+	font-family: sans-serif;
+}
+
+#bigheader {
+	background-color: #339966;
+	padding-bottom: 1px;
+}
+
+#bigheader p input {
+	padding: 4px;
+    border: 0;
+    margin-left: 290px;
+    padding-left: 9px;
+    font-family: cursive;
+}
+
+#searchbutton {
+	border-radius: 0px;
+	margin-top: -2px;
+	font-family: verdana;
+	padding: 3px 9px;
+}
+
+#myNavbar ul li a {
+	font-family: verdana;
+	color: white;
+}
+
+#myNavbar ul li a:hover {
+	color: black;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: white;
+}
+
+.navbar {
+	margin-bottom: 4px;
+}
+/*.navbar-toggle {
+	border-color: white;
+}*/
+
+
+
+
+
+/*heading for furits and vegetables and css for image*/
+
+.heading {
+	background-color: #339966;
+	color: white;
+	font-family: helvetica;
+}
+
+.heading_for_dod {
+	background-color: #67214e;
+	color: white;
+	font-family: helvetica;
+}
+
+.container-fluid .row .col-sm-4 a img:hover {
+	border:1px solid #339966;
+	box-shadow: 5px 5px 10px 5px #888888;
+}
+
+
+#tom {
+	color: white;
+	margin-top: 11px;
+	font-size: 20px;
+}
+
+#mycart {
+	margin-left: 10px;
+
+}
+
+.input-group {
+	margin-bottom: 10px;
+}
+
+.table {
+	margin-top: 30px;
+}
+
+#totalamountdiv {
+	box-shadow: 5px 5px 5px grey;
+	margin-top: 30px;
+	padding: 5px 5px 30px 20px;
+	background-color: #ccccb3;
+	
+}
+
+
+
+
+
+
+
+
+
+
+/*css for footer*/
+footer {
+	background-color: #339966;
+	margin-top: 25px;
+	padding-top: 15px;
+}
+
+footer .container .row .col-sm-4 p a {
+	color: white;
+	font-family: verdana;
+	text-decoration: none;
+}
+
+footer .container .row .col-sm-4 p a:hover {
+	color: black;
+	text-decoration: underline;
+	
+}
+
+footer .container .row p {
+	font-family: verdana;
+	color: white;
+}
+
+
+/******************************************************************************************
+css for deliveryaddress.html
+*******************************************************************************************/
+
+.form-group label {
+	font-family: sans-serif;
+}
+
+#deliveryaddress {
+	font-family: verdana;
+	
+}
+
+#save {
+	
+}
+
+
+
+/******************************************************************************************
+END OF deliveryaddress.html
+*******************************************************************************************/
+
+
+
+/******************************************************************************************
+css for adminpage1.html
+*******************************************************************************************/
+
+
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+
+/******************************************************************************************
+end of adminpage1.html
+*******************************************************************************************/
+
+
+/******************************************************************************************
+start of careers.html
+*******************************************************************************************/
+
+
+
+
+#tyforsignup {
+	border:1px solid red;
+	margin-top: 40px;
+	
+	
+}
+
+#tyforsignup h1 {
+    
+    margin-top: 30px;
+    font-family: verdana;
+}
+
+#tyforsignup h2 {
+    
+    margin-top: 30px;
+    font-family: verdana;
+}
+
+#tyforsignup p {
+    line-height: 26px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-family: verdana;
+}
+
+
+
+/******************************************************************************************
+end of careers.html
+*******************************************************************************************/

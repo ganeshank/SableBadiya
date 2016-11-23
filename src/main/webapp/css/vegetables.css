@@ -1,0 +1,93 @@
+
+/*css for header*/
+#smallheader {
+	background-color: #339966;
+
+}
+
+#smallheader p a {
+	color: white;
+	font-family: sans-serif;
+}
+
+#smallheader p span {
+	color: white;
+	font-family: sans-serif;
+}
+
+#bigheader {
+	background-color: #339966;
+	padding-bottom: 1px;
+}
+
+#bigheader p input {
+	padding: 4px;
+    border: 0;
+    margin-left: 290px;
+    padding-left: 9px;
+    font-family: cursive;
+}
+
+#searchbutton {
+	border-radius: 0px;
+	margin-top: -2px;
+	padding: 4px 13px;
+	font-family: verdana;
+}
+
+.modal-body p input {
+	padding: 2px 5px;
+	font-family: cursive;
+}
+
+.modal-body p {
+	font-family: verdana;
+}
+
+
+
+/*css for price and button (add to cart and buy now button)*/
+.price {
+	font-family: verdana;
+	font-size: 17px;
+	color: green;
+}
+
+button {
+	border:0;
+	border-radius: 5px;
+	font-family: verdana;
+}
+
+.container .row .col-sm-4 button:hover {
+	color: black;
+}
+
+
+
+/*css for footer*/
+footer {
+	background-color: #339966;
+	margin-top: 25px;
+}
+
+footer .container .row .col-sm-4 p a {
+	color: white;
+	font-family: verdana;
+	text-decoration: none;
+}
+
+footer .container .row .col-sm-4 p a:hover {
+	color: black;
+	text-decoration: underline;
+	
+}
+
+footer .container .row p {
+	font-family: verdana;
+	color: white;
+}
+
+footer {
+	padding-top: 15px;
+}
