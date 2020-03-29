@@ -125,15 +125,12 @@ function validation3() {
     
 }
 
-function cancel() {
-	document.getElementById('cancelorder').innerHTML = "Your item is cancelled!"
-}
+
 
 
 $(".cancel-click").click(function(){
 	startLoading();
 	var clickId = $(this).data("cancelid");
-	alert(clickId);
 	
 	var thisVar = $(this).parent("td");
 	
@@ -143,12 +140,13 @@ $(".cancel-click").click(function(){
 		dataType:"text",
 		success: function(response){
 			console.log(response);
-			thisVar.html("Cancelled.")
+			thisVar.html("Status: Cancelled.")
 			stopLoading();
 			alert("Canceled successfully!!!");
 		},
 		error: function(response){
 			stopLoading();
+			alert("Something goes wrong, Please contact to customer care");
 		}
 		
 	});

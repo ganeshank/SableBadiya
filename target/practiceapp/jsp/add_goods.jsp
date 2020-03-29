@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
 <div class="container col-sm-4 col-sm-offset-4">
 		<form role="form" action="adminhome/add_goods" method="post" id="additem_form" enctype="multipart/form-data">
@@ -16,8 +18,11 @@
     				<div class="col-sm-6 col-xs-6">
     					<select name="category">
 			            	<option value="select">Select</option>
-			            	<option value="veg">Vegetable</option>
-			            	<option value="fruit">Fruits</option>
+			            	<c:forEach items="${categories}" var="category" varStatus="status">
+			            		<option value="${category.categoryId}">${category.categoryName}</option>
+			            	</c:forEach>
+			            	<!-- <option value="veg">Vegetable</option>
+			            	<option value="fruit">Fruits</option> -->
 			            </select>
     				</div>
     			</div>

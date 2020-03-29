@@ -5,10 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	  	<title>Checkout</title>
+	  	<title>SableBadiya</title>
 	  	<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+	    <link rel="shortcut icon" type="image/x-icon" href="media/sb_logo_ico.ico" />
 	   <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -114,39 +114,40 @@
           
             <form role="form">
             	<c:choose>
-            		<c:when test="${cartForOrder.subtotalAmount < 50}">
+            		<c:when test="${cartForOrder.subtotalAmount < 150}">
             			<div class="col-sm-12">
-			              <p style="color: red;">*Free Standard Delivery if total order amount is Rs. 50 or above</p>
+			              <p style="color: red;">*Free Standard Delivery if total order amount is Rs. 150 or above</p>
 			            </div>
             		</c:when>
             	</c:choose>
-              <div class="col-sm-4">
+              <!-- <div class="col-sm-4">
                 <div class="radio">
                   <label><input type="radio" id="exp-delivery" name="optradio" value="Deliver in 1 Hour">Deliver in 1 Hour</label>
                    <p style="color: red;display: none;" id="standard-del-msg">*This option is applicable from 8AM to 8PM.</p>
                 </div>
-              </div>
+              </div> -->
               <div class="col-sm-4">
                 <div class="radio">
-                  <label><input type="radio" id="tmrw-delivery" name="optradio" value="Deliver By Tomorrow">
-                  	<c:choose>
-                  		<c:when test="${cartForOrder.isDeliveryOptionTomorrow}">
-                  			Deliver By Tomorrow
-                  		</c:when>
-                  		<c:otherwise>
-                  			Delivery By Today
-                  		</c:otherwise>
-                  	</c:choose>   
-                  </label>
+                 
 
                 </div>
                 <div class="form-group">
-                    <label for="sel1">Select option</label>
-                    <select class="form-control" id="sel1">
-                      <option value="morning">Morning 10AM</option>
-                      <option value="afternoon">AfterNoon 1AM</option>
-                      <option value="evening">Evening 5PM</option>
-                    </select>
+                    <label>Select Delivery option</label>
+                    <%-- <select class="form-control" id="sel1">
+	                    <c:forEach items="${cartForOrder.deliveryOptions}" var="deliver" varStatus="status">
+	                    	<option value="${deliver.deliveryId}">${deliver.name}</option>
+	                    </c:forEach>
+                    </select> --%>
+                 
+                    
+                    <!-- Modal -->
+					  <select class="form-control" id="sel1">
+						 <c:forEach var="type" items="${cartForOrder.deliverySlotMap}">
+						 	<optgroup label="${type.key}">
+						    <option value="${type.key}">${type.value}</option>
+						  </optgroup>
+						</c:forEach>
+					</select>
                 </div>
               </div>
               
@@ -174,8 +175,8 @@
                   </div>
                   <div class="col-sm-6">
                   	<c:choose>
-	            		<c:when test="${cartForOrder.subtotalAmount < 50}">
-							<p class="priceof">Rs.10</p>	            		
+	            		<c:when test="${cartForOrder.subtotalAmount < 150}">
+							<p class="priceof">Rs.30</p>	            		
 	            		</c:when>
 	            		<c:otherwise>
 	            			<p class="priceof">Rs.${cartForOrder.shippingCharge}</p>
@@ -187,8 +188,8 @@
                   </div>
                   <div class="col-sm-6">
                     <c:choose>
-	            		<c:when test="${cartForOrder.subtotalAmount < 50}">
-							<p class="priceof">Rs.${cartForOrder.subtotalAmount+10}</p>	            		
+	            		<c:when test="${cartForOrder.subtotalAmount < 150}">
+							<p class="priceof">Rs.${cartForOrder.subtotalAmount+30}</p>	            		
 	            		</c:when>
 	            		<c:otherwise>
 	            			<p class="priceof"><strong>Rs.${cartForOrder.totalAmount}</strong></p>
@@ -218,7 +219,49 @@
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body">
           <p class="text-center">Pay by using Cash-on-Delivery</p>
-          <h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount}</h3>
+          <c:choose>
+           		<c:when test="${cartForOrder.subtotalAmount < 150}">
+           			<c:choose>
+           				<c:when test="${cartForOrder.isUserWalletMoneyAvailable}">
+           					<c:choose>
+           						<c:when test="${cartForOrder.remainingWalletAmount < cartForOrder.offerPrice }">
+           							Used your wallet amount:<input type="checkbox" name="walletAmount" value="${cartForOrder.remainingWalletAmount}" checked disabled> ${cartForOrder.remainingWalletAmount}<br/>
+           							<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount+30-cartForOrder.remainingWalletAmount}</h3>
+           						</c:when>
+           						<c:otherwise>
+           							Used your wallet amount:<input type="checkbox" name="walletAmount" value="${cartForOrder.offerPrice}" checked disabled> ${cartForOrder.offerPrice}<br/>
+           							<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount+30-cartForOrder.offerPrice}</h3>
+           						</c:otherwise>
+           					</c:choose>
+           					
+           				</c:when>
+           				<c:otherwise>
+           					<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount+30}</h3>
+           				</c:otherwise>
+           			</c:choose>
+           		</c:when>
+           		<c:otherwise>
+           			<c:choose>
+           				<c:when test="${cartForOrder.isUserWalletMoneyAvailable}">
+           					<c:choose>
+           						<c:when test="${cartForOrder.remainingWalletAmount < cartForOrder.offerPrice }">
+           							Used your wallet amount:<input type="checkbox" name="walletAmount" value="${cartForOrder.remainingWalletAmount}" checked disabled> ${cartForOrder.remainingWalletAmount}<br/>
+           						<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount-cartForOrder.remainingWalletAmount}</h3>
+           						</c:when>
+           						<c:otherwise>
+           							Used your wallet amount:<input type="checkbox" name="walletAmount" value="${cartForOrder.offerPrice}" checked disabled> ${cartForOrder.offerPrice}<br/>
+           						<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount-cartForOrder.offerPrice}</h3>
+           						</c:otherwise>
+           					</c:choose>
+           					
+           				</c:when>
+           				<c:otherwise>
+           					<h3 class="text-center">Amount Payable : Rs.${cartForOrder.totalAmount}</h3>
+           				</c:otherwise>
+           			</c:choose>
+           			
+           		</c:otherwise>
+           	</c:choose>
           <p class="text-center" data-cartid="${cartForOrder.cartId}"><a href="#" class="btn btn-success btn-lg order-confirm">CONFIRM AND PLACE ORDER</a></p>
         </div>
       </div>
@@ -242,7 +285,7 @@
 	  		document.getElementById('delivery-option').style.pointerEvents = 'none';
 	  		document.getElementById('payment-method').style.pointerEvents = 'none'; */
 	  		
-	  		var isStandardDeliveryEnable = '${cartForOrder.isStandardDeliveryEnable}';
+	  		/* var isStandardDeliveryEnable = '${cartForOrder.isStandardDeliveryEnable}';
 	  		if(isStandardDeliveryEnable=="false"){
 	  			$("#exp-delivery").attr('disabled', true);
 	  			$('#tmrw-delivery').prop('checked', true);
@@ -250,7 +293,11 @@
 	  		}else{
 	  			$('#exp-delivery').prop('checked', true);
 		  		$('#sel1').prop('disabled', 'disabled');
-	  		}
+	  		} */
+	  		
+	  		
+	  	
+
 	  	});
 	  	
 	  	$(".delete-address").click(function(){

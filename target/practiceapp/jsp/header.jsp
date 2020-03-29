@@ -3,17 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 
-	<link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="media/sb_logo_ico.ico" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <meta name="google-signin-client_id" content="1082344612925-6bfsqivi3u0vmj1i2el7qbc6chnofkn8.apps.googleusercontent.com">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css?version=2">
     <link rel="stylesheet" type="text/css" href="css/spinner.css">
     
-
+<style>
+	#ui-id-1{
+	 z-index: 99999;
+	}
+</style>
 <jsp:include page="loading.jsp"></jsp:include>
 <header class="navbar-fixed-top">
       <div id="smallheader" class="container-fluid">
@@ -28,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="homepage"><img src="media/logoimage.jpg" alt="brand logo" style="width:90px;margin-top:-11px;" class="hidden-xs"><img src="media/small_logo.jpg" class="visible-xs" style="width:40px;height:38px;margin-top:-7px;margin-left:14px;"></a>
+              <a class="navbar-brand" href="homepage"><img src="media/sb_logo_new_2.gif" alt="brand logo" style="width:90px;margin-top:-11px;" class="hidden-xs"><img src="media/small_logo.jpg" class="visible-xs" style="width:40px;height:38px;margin-top:-7px;margin-left:14px;"></a>
               <div class="visible-xs text-right" id="tom">
                 <a href="viewcart" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge item-count">0</span></a>
               </div>
@@ -44,7 +50,7 @@
 				   	<li><a href="#" id="header-user-name">Hi ${sessionScope.userDetails.userName}</a></li>
 				   	<li> <a href="javascript:void(0);"><span class="glyphicon glyphicon-earphone"></span> +91-9584069665</a> </li>
 				   	<li><a href="myaccount">MyAccount</a></li>
-			         <li> <a href="logout">Logout</a> </li>
+			         <li> <a href="javascript:void(0);" onclick="logout();">Logout</a> </li>
 				  </c:when>
 				  <c:otherwise>
 				     <li> <a href="javascript:void(0);"><span class="glyphicon glyphicon-earphone"></span> +91-9584069665</a> </li>
@@ -73,9 +79,12 @@
         </div>        
         
         
+  
+        
     </header><br/><br/><br/><br/>
   <script type="text/javascript">
   $(document).ready(function() {
+	  
 	      $(function() {
            	  $("#search").autocomplete({     
               source : function(request, response) {
@@ -88,23 +97,27 @@
 	                      },
 	                      dataType : "json",
 	                      success : function(data) {
-	                              response(data);
+	                    	  response($.map(data, function (item) {
+									
+                    	            return {
+                    	                label: item.value,
+                    	                value: item.value,
+                    	                id: item.key
+                    	            };
+	                    	  }));
 	                      }
 	              });
 	      	  },
 		      select: function( event, ui ) {
-		    	  redirectToGoodsBasedOnSearchValue(ui.item.value);
+		    	  //console.log(ui.item);
+		    	  redirectToGoodsBasedOnSearchValue(ui.item.label);
 		      }
 			});
 		});
 	      
 	      //alert("Our services are not available on 31st October & 01st November. Sorry for your inconvenient");
-	      
-	    /* var justSessionStart = '${justSessionStart}';
-	    if(typeof justSessionStart!="undefined" && (justSessionStart || justSessionStart=="true")){
-	    	$(".notify-show").click();
-	    }  */
-	    
+	      onLoad();
+	   
   });
   
   
@@ -125,6 +138,26 @@ $('#search').keypress(function (e) {
       return false;  
    }
  });
+ 
+ function logout(){
+	 signOut();
+	 document.location.href = "http://sablebadiya.com/practiceapp/logout";
+ }
+ 
+ function onLoad() {
+	 gapi.load('client:auth2', function() {
+	       gapi.auth2.init();
+	     });
+   }
+ 
+ function signOut() {
+     var auth2 = gapi.auth2.getAuthInstance();
+     auth2.signOut().then(function () {
+       console.log('User signed out.');
+     });
+   }
+
+   
  
   </script>
   <script src="js/header.js"></script>

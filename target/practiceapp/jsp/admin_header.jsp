@@ -33,9 +33,15 @@
                     <li>
                         <a href="javascript:void(0);" class="btn tab-click" data-tab="add_goods">Add Goods</a>
                     </li>
-                     <li>
+                     <!-- <li>
                         <a href="javascript:void(0);" class="btn tab-click" data-tab="offline_order">Offline Order</a>
-                     </li>
+                     </li> -->
+                     <!-- <li>
+                        <a href="javascript:void(0);" class="btn tab-click" data-tab="send_dotd_message">Send Message</a>
+                    </li> -->
+                    <li>
+                        <a href="javascript:void(0);" class="btn tab-click" data-tab="order_filter">Order Filter</a>
+                    </li>
                     <li>
                         <a href="javascript:void(0);">Hi ${sessionScope.userDetails.userName}</a>
                     </li>
@@ -67,7 +73,12 @@ $(".tab-click").click(function(){
 		loadContainer("adminhome/add_goods");
 	}else if(tabName == "offline_order"){
 		loadContainer("adminhome/offline_order");
+	}else if(tabName == "send_dotd_message"){
+		loadContainer("adminhome/send_message");
+	}else if(tabName == "order_filter"){
+		loadContainer("adminhome/order_filter");
 	}
+	
 	
 });
 </script>

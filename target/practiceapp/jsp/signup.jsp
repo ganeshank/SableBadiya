@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sign Up Page</title>
+	<title>SableBadiya</title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  	<link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+  	<link rel="shortcut icon" type="image/x-icon" href="media/sb_logo_ico.ico" />
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  	<link rel="stylesheet" type="text/css" href="css/signup.css">
+  	<link rel="stylesheet" type="text/css" href="css/signup.css?version=2">
 </head>
 <body>
 	<div class="container col-sm-4 col-sm-offset-4">
@@ -26,7 +26,7 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email id" required>
         </div>
         <div class="form-group">
-            <label for="contactno">Contact Number:</label>
+            <label for="contactno">Mobile Number:</label>
             <input type="tel" class="form-control" id="contactno" title="Enter valid 10 digit mobile number" name="contactnumber" pattern=".{10,}" placeholder="Enter only 10 digits of your mobile number" required>
         </div>
     		<div class="form-group">
@@ -50,20 +50,29 @@
 		function validate(){
 			var pass = document.getElementById("pwd").value;
 			var confirmPass = document.getElementById("cpwd").value;
-			if(pass==confirmPass){
-				document.getElementById("signup_form").submit();
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var mobile = document.getElementById("contactno").value;
+			
+			var phonenoRegx = /^\d{10}$/;
+			
+			if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+				alert('Email is not valid');
+			   return false;
+			}else if(!(mobile.match(phonenoRegx))){
+				alert('Mobile number is not valid');
+				   return false;
+			}else if(pass!=confirmPass){
+				alert('password and confirm password is not matched, Please try again!!!');
 			} 
 			else{
-				alert('password and confirm password is not matched, Please try again!!!');
+				document.getElementById("signup_form").submit();
 			}
-			
-			
 		}
 		
 		function back(){
 			window.location.href = "homepage";
 		}
-		
 		
 	</script>
 

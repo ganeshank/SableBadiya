@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>Example 2</title>
+	<link href='http://sablebadiya.com/css/bi.css'>
+  </head>
+  <body>
+    <header class="clearfix" style="content: ""; display: table;clear: both;">
+      <div id="logo" align="center">
+        <span class="name" style="font-size:25px;">Order Invoice</span>
+		
+      </div>
+      
+    </header>
+    <main>
+      <div id="details">
+        <div style="display:inline-block; float:left; padding-left:80px;">
+			<span style="font-size:20px;">Order By:</span>
+			<span style="font-size:20px;">$cartDetails.shippingAddress.contactName</span><br/>
+		<span style="font-size:15px;">$cartDetails.shippingAddress.addressLine1, $cartDetails.shippingAddress.city</span><br/>
+		<span style="font-size:15px;">Phone: $cartDetails.shippingAddress.contactNumber</span>
+		</div>
+		
+		<div style="display:inline-block; float:right; padding-right:80px;">
+			<span style="font-size:20px;">SableBadiya</span><br/>
+			<span style="font-size:15px;">MIG 1078, aditya nagar durg, (C.G.)</span><br/>
+			<span style="font-size:15px;">+91-9584069665</span>
+
+		</div>
+      </div>
+	  <br/><br/>
+<br/><br/><br/>	  
+	  
+	  
+	  
+      <table align="center">
+        <thead>
+          <tr>
+            <th class="no" align="center" style="border: 1px solid black;">#SN</th>
+            <th class="desc" align="center" style="border: 1px solid black;">ITEM NAME</th>
+            <th class="unit" align="center" style="border: 1px solid black;">UNIT PRICE</th>
+            <th class="qty" align="center" style="border: 1px solid black;">QUANTITY</th>
+            <th class="total" align="center" style="border: 1px solid black;">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+        	#foreach ($item in $cartDetails.cartItems)
+	          <tr style="border: 1px solid black;">
+	            <td class="no" align="center" >$velocityCount</td>
+	            <td class="desc" align="center">$item.goodsVo.goodsName</td>
+	            <td class="unit" align="center" >Rs. $item.goodsVo.price/$item.goodsVo.uom</td>
+	            <td class="qty" align="center" >$item.quantity $item.uom</td>
+	            <td class="total" align="center" >Rs. $item.price</td>
+	          </tr>
+	         #end
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">SUBTOTAL</td>
+            <td>$cartDetails.subtotalAmount</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">SHIPPING CHARGE</td>
+            <td>$cartDetails.shippingCharge</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Offer</td>
+            <td>$cartDetails.walletOfferAmount</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">GRAND TOTAL</td>
+            <td>$cartDetails.totalAmount</td>
+          </tr>
+        </tfoot>
+      </table><br/>
+      <div id="thanks" align="center">Thank you for shopping on SableBadiya.</div>
+    </main>
+    <footer>
+      <div  align="center">Order details was created on a computer and is valid without the signature and seal.
+		</div>
+	</footer>
+  </body>
+</html>

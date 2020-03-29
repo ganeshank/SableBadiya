@@ -2,7 +2,7 @@ $("p").delegate(
 		".addtocartandbuynow",
 		"click",
 		function() {
-			//startLoading();
+			startLoading();
 			var quantityId = $(this).parent('p').siblings('.qty-class')
 					.children('.qty-inner-div').find('.qty-select').val();
 					
@@ -19,6 +19,8 @@ $("p").delegate(
 			
 			var rupee = 0;
 			
+			var buttonText = $(this).text();
+			
 			if(!($(this).parent('p').siblings('.qty-class').is(':visible'))){
 				rupee = $(this).parent('p').siblings('.rupee-class')
 				.children('.qty-inner-div-rupee').find('.qty-select-rupee').val();
@@ -32,6 +34,10 @@ $("p").delegate(
 					console.log(response);
 					$('.item-count').text(response);
 					stopLoading();
+					
+					if(buttonText=="Pre-Order Now"){
+						alert("It is a preorder request, cusomer supprot will contact you soon.");
+					}
 					
 					notif({
 						  msg: "<p class='text-justify'><b>Success:</b> "+goodsName+" is added successfully into your cart</p>",
@@ -48,6 +54,7 @@ $("p").delegate(
 });
 
 $( "td" ).delegate( "a", "click", function() {
+		startLoading();
 		var itemId = $(this).data("itemid");
 		
 		var item = $(this).parent("td").parent("tr");
@@ -75,8 +82,10 @@ $( "td" ).delegate( "a", "click", function() {
 		  			$("#totalamountdiv").show();
 		  			$("#empty-cart-div").hide();
 				}
+				stopLoading();
 			},
 			error: function(response){
+				stopLoading();
 				console.log(response);
 			}
 			
@@ -86,6 +95,7 @@ $( "td" ).delegate( "a", "click", function() {
 
 
 $( "td" ).delegate( ".qty-change", "change", function() {
+			startLoading();
 			var cartItemTr = $(this).parents("tr");
 			
 			var cartItemId = $(this).data("itemid");
@@ -109,9 +119,11 @@ $( "td" ).delegate( ".qty-change", "change", function() {
 					$(".total-amount").text(response.totalAmount);
 					$(".total-msrp").text(response.totalMsrp);
 					$(".total-saving").text(response.totalSaving);
+					stopLoading();
 					
 				},
 				error: function(response){
+					stopLoading();
 					updateCartItemCount();
 				}
 				
@@ -120,7 +132,7 @@ $( "td" ).delegate( ".qty-change", "change", function() {
 });
 
 $(".empty-cart").click(function(){
-		
+		startLoading();
 		var cartId = $(this).data("cartid");
 		console.log(cartId);
 		
@@ -142,10 +154,12 @@ $(".empty-cart").click(function(){
 	  			$("#empty-cart-div").show();
 				$( ".place-order" ).addClass( "disabled" );
 				$( ".empty-cart" ).addClass( "disabled" );
+				stopLoading();
 			},
 			error: function(response){
 				console.log(response);
 				alert("Not able to clear the cart, Please contact to customer service.");
+				stopLoading();
 			}
 			
 		});

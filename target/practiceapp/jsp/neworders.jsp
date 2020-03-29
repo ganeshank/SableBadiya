@@ -63,5 +63,10 @@ function viewNewOrder(cartId){
 	});
 }
 
+function generateBill(cartId){
+	
+	window.open('generate_bill?cartId='+ cartId,'_blank');
+}
+
 
 </script>

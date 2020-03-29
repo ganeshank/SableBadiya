@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  	<title>My Account</title>
+	  	<title>SableBadiya</title>
 	  	<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+	    <link rel="shortcut icon" type="image/x-icon" href="media/sb_logo_ico.ico" />
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -150,6 +150,27 @@
         </div>
       </div>
     </div>
+    
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+          <h4 class="panel-title">
+            My Wallet <span class="glyphicon glyphicon-menu-down"style="float:right;" ></span>
+          </h4>
+        </a>
+        
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="form-group">
+              <label for="myWallet" class="col-sm-2 col-sm-offset-3 control-label">Wallet Amount:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" value="${userDetails.walletAmount} Rs" id="myWallet" name="myWallet" readonly>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
 
 
@@ -189,8 +210,8 @@
 
         <div id="collapsea" class="panel-collapse collapse in">
           <div class="panel-body">
-            <c:choose>
-            	<c:when test="${order.cartStatusId != 7 || order.cartStatusId != 8}">
+            <%-- <c:choose>
+            	<c:when test="${order.cartStatusId != 7 || order.cartStatusId != 8}"> --%>
             		<table class="table">
 			            <c:forEach items="${order.cartItems}" var="cartItem" varStatus="status">
 			              <tr>
@@ -211,11 +232,21 @@
 		                <td style="font-family:verdana;">Order Date: ${order.orderDate}</td>
 		                <td style="font-family:verdana;">Delivered On: ${order.orderDate}</td>
 		                <td style="font-family:verdana;">Order Total: <strong>Rs. ${order.totalAmount}</strong></td>
-		                <td><p id="cancelorder" style="color:red;"></p></td>
+		                <c:choose>
+            				<c:when test="${order.cartStatusId == 7 || order.cartStatusId == 8}">	
+            					<td><p style="color:red;">Status: Canceled</p></td>
+            				</c:when>
+            				<c:when test="${order.cartStatusId == 6 || order.cartStatusId == 9}">	
+            					<td><p style="color:red;">Status: Delivered</p></td>
+            				</c:when>
+            				<c:otherwise>
+            					<td><button class="btn btn-danger cancel-click" data-cancelid="order-${order.cartId}">Cancel Order</button></td>
+            				</c:otherwise>
+		                </c:choose>
 		              </tr>
 		            </table>
-            	</c:when>
-            </c:choose>
+            	<%-- </c:when>
+            </c:choose> --%>
           </div>
         </div>    
           </div>

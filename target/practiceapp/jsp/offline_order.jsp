@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
+<script src="js/offline_order.js"></script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-		<form role="form" action="" method="post" id="offline_order_form">
+		<form role="form" action="createofflineorder" method="post" id="offline_order_form">
 		<div class="container">
 			<div class="col-sm-4">
 	  			<p style="font-family:verdana;"><b>Customer Name: </b> 
@@ -19,7 +20,7 @@
 	  		
 	  		<div class="col-sm-4">
 	  			<p style="font-family:verdana;"><b>Customer Address: </b> 
-	  				<textarea class="form-control" rows="3" id="address"></textarea>
+	  				<textarea class="form-control" rows="3" id="address" name="address"></textarea>
 	  			</p>
 	  		</div>
 	  		
@@ -42,7 +43,7 @@
 	  			</div>
 	  			<div class="col-sm-9">
 		            <input type="text" class="form-control" id="goods_id" name="goods" placeholder="Enter goods name" required>
-		            <!-- <input type="hidden" id="goods_id"> -->
+		            <input type="hidden" id="g_id" value="0"/>
 		        </div>
  			</div>
   			
@@ -56,6 +57,12 @@
 	  					<c:forEach items="${quantities}" var="quantity" varStatus="status">
 	  						<option value="${quantity.quantityId}">${quantity.weight} ${quantity.uom}</option>
 	  					</c:forEach>
+	  					<option value="5 Rs">5 Rs</option>
+		              	<option value="10 Rs">10 Rs</option>
+		              	<option value="15 Rs">15 Rs</option>
+		              	<option value="20 Rs">20 Rs</option>
+		              	<option value="25 Rs">25 Rs</option>
+		              	<option value="30 Rs">30 Rs</option>
 	  				</select>
 		        </div>
 	  		</div>
@@ -89,74 +96,10 @@
 		            </tr>
 		        </thead>
 		    </table>
-	  		
+		    <br/>
+		    <div class="row">
+	 			<div class="col-sm-12">
+		  			<input class="btn btn-primary" id="create_order" type="button" value="Create Order">
+	 			</div>
+ 			</div>
 		 </form>
-		 
-		 
-	
-	
-	<script>
-		function validate(){
-			$("#additem_form").submit();
-		}
-		
-		$(document).ready(function() {
-		    var table = $('#example').DataTable({
-		    	"paging":   false,
-		        "ordering": false,
-		        "info":     false
-		    });
-		    
-		    $(function() {
-	           	  $("#goods_id").autocomplete({     
-	              source : function(request, response) {
-		              $.ajax({
-		                      url : "globalsearch",
-		                      type : "GET",
-		                      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		                      data : {
-		                              term : request.term
-		                      },
-		                      dataType : "json",
-		                      success : function(data) {
-		                              response(data);
-		                      }
-		              });
-		      	  },
-			      select: function( event, ui ) {
-			    	  $("#goods_id")(ui.item.value);
-			      }
-				});
-			});
-		    
-		    $('#addGoods').on( 'click', function () {
-		    	var goodsId = $("#goods_id").val();
-		    	var qtyId = $("#qty-goods").val();
-		    	var price = $("#price").val();
-		    	
-		    	$.ajax({
-		    		url: "adminhome/offline_order_add_goods",
-		    		data:{goodsId:goodsId, qtyId:qtyId, price:price},
-		    		dataType:"text",
-		    		success: function(response){
-		    			table.row.add( [
-   				            $("#goods").val(),
-   				            $("#qty-goods").text(),
-   				            price,
-   				            "<input class='btn' type='button' value='Delete'>"
-   				        ] ).draw( false );
-		    			
-		    		},
-		    		error: function(response){
-		    			console.log(response.status);
-		    			console.log(response);
-		    		}
-		    		
-		    	});
-		 
-		    } );
-		 
-		} );
-		
-	
-	</script>

@@ -221,7 +221,7 @@
 				Table.clear().draw();
 				Table.rows.add(result.data).draw();
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-			// needs to implement if it fails
+			
 			});
 			
   	});

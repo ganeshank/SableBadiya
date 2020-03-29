@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  	<title>Sable Badiya - Contact Us</title>
+	  	<title>Foodcart</title>
 	  	<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
-	    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> -->
@@ -19,7 +18,7 @@
   	<div class="col-sm-6 col-sm-offset-3" id="submitcxrequest">
   	<h3>Submit your queries.</h3>
   	<hr>
-  	<p>If you have a question about our service or have an issue to report, You can directly contact with us <span class="glyphicon glyphicon-earphone"></span> +91-9584069665</p>
+  	<p>If you have a question about our service or have an issue to report, You can directly contact with us <span class="glyphicon glyphicon-earphone"></span> +91-8871542522</p>
   	<p>Or you can send a request below and we will get back to you as soon as possible.</p>
 
   	<form class="form-horizontal" id="myform" name="myform" action="sendquery" method="post">

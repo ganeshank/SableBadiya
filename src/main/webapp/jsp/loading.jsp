@@ -23,7 +23,7 @@
 <script type="text/javascript">
 function startLoading(){
 	$('body').loadingModal('show');
-    $('body').loadingModal({text: 'We are processing your request...', 'animation': 'wanderingCubes'});
+    $('body').loadingModal({text: 'Your request is in progress...', 'animation': 'wanderingCubes'});
 }   
  
 function stopLoading(){

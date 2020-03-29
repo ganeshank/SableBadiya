@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+<title>SableBadiya</title>
+<link rel="shortcut icon" type="image/x-icon" href="media/sb_logo_ico.ico" />
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include><br/><br/>

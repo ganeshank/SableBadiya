@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  	<title>My Account</title>
+	  	<title>Foodcart</title>
 	  	<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -150,6 +149,8 @@
         </div>
       </div>
     </div>
+    
+    
 
 
 
@@ -173,7 +174,7 @@
           
           <a data-parent="#accordion1" href="javascript:void(0);" style="text-decoration:none;">
             <h6 class="panel-title">
-            ${order.orderNumber} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Onion 1kg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            ${order.orderNumber} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             		<%-- <c:choose>
             			<c:when test="${order.cartStatusId == 7 || order.cartStatusId == 8}">
 	                		<td>Order is cancelled</td>
@@ -189,8 +190,8 @@
 
         <div id="collapsea" class="panel-collapse collapse in">
           <div class="panel-body">
-            <c:choose>
-            	<c:when test="${order.cartStatusId != 7 || order.cartStatusId != 8}">
+            <%-- <c:choose>
+            	<c:when test="${order.cartStatusId != 7 || order.cartStatusId != 8}"> --%>
             		<table class="table">
 			            <c:forEach items="${order.cartItems}" var="cartItem" varStatus="status">
 			              <tr>
@@ -211,11 +212,21 @@
 		                <td style="font-family:verdana;">Order Date: ${order.orderDate}</td>
 		                <td style="font-family:verdana;">Delivered On: ${order.orderDate}</td>
 		                <td style="font-family:verdana;">Order Total: <strong>Rs. ${order.totalAmount}</strong></td>
-		                <td><p id="cancelorder" style="color:red;"></p></td>
+		                <c:choose>
+            				<c:when test="${order.cartStatusId == 7 || order.cartStatusId == 8}">	
+            					<td><p style="color:red;">Status: Canceled</p></td>
+            				</c:when>
+            				<c:when test="${order.cartStatusId == 6 || order.cartStatusId == 9}">	
+            					<td><p style="color:red;">Status: Delivered</p></td>
+            				</c:when>
+            				<c:otherwise>
+            					<td><button class="btn btn-danger cancel-click" data-cancelid="order-${order.cartId}">Cancel Order</button></td>
+            				</c:otherwise>
+		                </c:choose>
 		              </tr>
 		            </table>
-            	</c:when>
-            </c:choose>
+            	<%-- </c:when>
+            </c:choose> --%>
           </div>
         </div>    
           </div>

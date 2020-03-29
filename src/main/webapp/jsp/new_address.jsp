@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
+<title>Foodcart</title>
+
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -33,7 +33,7 @@
           </div>
           
           <div class="form-group">
-            <label for="addressline1">Address Line 1<sup style="color:red;">*</sup> :</label>
+            <label for="addressline1">Address<sup style="color:red;">*</sup> :</label>
             <input type="text" class="form-control" value="${addressForEdit.addressLine1}" name="address1" id="addressline1" placeholder="Enter Address here" required>
             <p id="sam3" style="color:red;"></p>
           </div>
@@ -50,9 +50,11 @@
           <div class="form-group">
             <label for="city">City<sup style="color:red;">*</sup> :</label>
             <select class="form-control" id="city" name="city">
-              <option value="select">Select city</option>
-              <option value="Smriti Nagar, Durg">Smriti Nagar, Durg</option>
-              <option value="Nehru Nagar, Bhilai">Nehru Nagar, Bhilai</option>
+              <option value="select">Select Area</option>
+              <option value="SMRITI_NAGAR">SMRITI NAGAR</option>
+              <option value="JUNWANI">JUNWANI</option>
+              <option value="NEHRU_NAGAR">NEHRU NAGAR</option>
+              <option value="SUPELA">SUPELA</option>
             </select>
             <p id="city-error" style="color:red;"></p>
           </div>

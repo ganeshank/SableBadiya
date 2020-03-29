@@ -5,11 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SableBadiya - Home</title>
+	<title>Foodcart</title>
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="media/logo-icon.ico" />
-    <!-- 
+     <!-- 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -39,7 +38,7 @@
 			<c:choose>
 			  <c:when test="${status.index=='0'}">
 			   	<div class="item active">
-				    <a href="deal_of_the_day"><img src="${media.mediaWebpath}" alt="" width="100%"></a>
+				    <a href="javascript:void(0);"><img src="${media.mediaWebpath}" alt="" width="100%"></a>
 				    <div class="carousel-caption">
 				    	<h3></h3>
 				    	<p></p>
@@ -48,7 +47,7 @@
 			  </c:when>
 			  <c:otherwise>
 			    <div class="item">
-				   <a href="deal_of_the_day"> <img src="${media.mediaWebpath}" alt="" width="100%"></a>
+				   <a href="javascript:void(0);"> <img src="${media.mediaWebpath}" alt="" width="100%"></a>
 				    <div class="carousel-caption">
 				    	<h3></h3>
 				    	<p></p>
@@ -80,29 +79,34 @@
     	</div>
     </div> -->
     <div class="row">
+    	<div class="col-sm-12 text-center">
+    		<h2 class="bordered"><strong>OUR SERVICES</strong></h2>
+    	</div>
+    </div>
+    <div class="row">
       <c:forEach items="${categories}" var="category" varStatus="status">
       	<c:choose>
 		  <c:when test="${status.index==0}">
-		  	<div class="col-sm-4 text-center">
+		  	<div class="col-sm-6 text-center">
 		         
 		        <a href="getgoods?categoryId=${category.categoryId}&isFromSearch=false" onclick="startLoading()" style="text-decoration: none;">
-		        	<h2 class="heading"><c:out value="${category.categoryName}" /></h2>
+		        	<h4 class="heading"><c:out value="${category.categoryName}" /></h4>
 		        	<img class="img-responsive" src="${category.mediaWebpath}" width="100%" height="250px">
 		        </a>
       		</div>
-      		<div class="col-sm-4 text-center">
+      		<!-- <div class="col-sm-3 text-center">
 		         
 		        <a href="deal_of_the_day" onclick="startLoading()" style="text-decoration: none;">
-		        	<h2 class="heading_for_dod">Today's Deal</h2>
+		        	<h4 class="heading_for_dod">Today's Deal</h4>
 		        	<img class="img-responsive" src="media/Deal-of-the-Day.jpg" width="100%" height="250px">
 		        </a>
-      		</div>
+      		</div> -->
 		  </c:when>
 		  <c:otherwise>
-		  	<div class="col-sm-4 text-center">
+		  	<div class="col-sm-6 text-center">
 		         
 		        <a href="getgoods?categoryId=${category.categoryId}&isFromSearch=false" onclick="startLoading()" style="text-decoration: none;">
-		        	<h2 class="heading"><c:out value="${category.categoryName}" /></h2>
+		        	<h4 class="heading"><c:out value="${category.categoryName}" /></h4>
 		        	<img class="img-responsive" src="${category.mediaWebpath}" width="100%" height="250px">
 		        </a>
 	      	</div>
@@ -110,7 +114,7 @@
 		</c:choose>
       </c:forEach>
      
-      <div class="col-sm-2"></div>
+      
     </div>
   </div>
   <!-- <div class="container-fluid">

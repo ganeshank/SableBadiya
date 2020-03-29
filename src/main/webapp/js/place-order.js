@@ -48,8 +48,9 @@ $(".proceed-order-summary").click(function(){
 
 $(".proceed-delivery-option").click(function(){
 	startLoading();
-	var deliveryOption;
-	switch($('input[type=radio][name=optradio]:checked').val()) {
+	var deliveryOption = $("#sel1 :selected").text();
+	var deliveryDate = $("#sel1 :selected").val();
+	/*switch($('input[type=radio][name=optradio]:checked').val()) {
 	    case 'Deliver By Tomorrow':
 	    	deliveryOption = "Deliver Tomorrow, "+ $("#sel1 option:selected").val();
 	        break;
@@ -58,21 +59,17 @@ $(".proceed-delivery-option").click(function(){
 	    	deliveryOption = "Deliver in 1 Hour";
 	        break;
     
-	}
-	console.log(comment + "......." + deliveryOption);
+	}*/
+	
 	var comment = $("#comment").val();
+	console.log(comment + "......." + deliveryOption+"......."+deliveryDate);
 	
 	$.ajax({
 		url: "adddelivery",
-		data: {comment:comment, deliveryOption:deliveryOption},
+		data: {comment:comment, deliveryOption:deliveryOption, deliveryDate:deliveryDate},
 		dataType:"text",
 		success: function(response){
 			console.log(response);
-			
-			/*document.getElementById('delivery-address').style.pointerEvents = 'none';
-			document.getElementById('order-summary').style.pointerEvents = 'none';
-			document.getElementById('delivery-option').style.pointerEvents = 'none';
-			document.getElementById('payment-method').style.pointerEvents = 'auto';*/
 			$("#payment-method").attr("data-toggle","collapse");
 			$("#payment-method").click();
 			stopLoading();

@@ -19,6 +19,8 @@ $("p").delegate(
 			
 			var rupee = 0;
 			
+			var buttonText = $(this).text();
+			
 			if(!($(this).parent('p').siblings('.qty-class').is(':visible'))){
 				rupee = $(this).parent('p').siblings('.rupee-class')
 				.children('.qty-inner-div-rupee').find('.qty-select-rupee').val();
@@ -32,6 +34,10 @@ $("p").delegate(
 					console.log(response);
 					$('.item-count').text(response);
 					stopLoading();
+					
+					if(buttonText=="Pre-Order Now"){
+						alert("It is a preorder request, cusomer supprot will contact you soon.");
+					}
 					
 					notif({
 						  msg: "<p class='text-justify'><b>Success:</b> "+goodsName+" is added successfully into your cart</p>",
