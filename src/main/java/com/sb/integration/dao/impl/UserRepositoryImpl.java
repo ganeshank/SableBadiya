@@ -18,62 +18,62 @@ import com.sb.integration.vo.UserVo;
 
 public class UserRepositoryImpl implements UserRepository {
 
-	private static final String USER_NAME_EXIST = "SELECT COUNT(*) FROM  USERS WHERE USER_NAME = ?";
+	private static final String USER_NAME_EXIST = "SELECT COUNT(*) FROM  users WHERE USER_NAME = ?";
 
-	private static final String REG_NEW_USER = "INSERT INTO  USERS (EMAIL,MOBILE_NUMBER,"
+	private static final String REG_NEW_USER = "INSERT INTO  users (EMAIL,MOBILE_NUMBER,"
 			+ "CREATED_DATE,MODIFIED_DATE,ACTIVE,PASSWORD,NAME,ACCOUNT_SOURCE, TOTAL_WALLET_AMOUNT)" + " VALUES(?,?,?,?,?,?,?,?,?)";
 
-	private static final String CHECK_LOGIN = "SELECT * FROM  USERS WHERE (EMAIL = ? OR "
+	private static final String CHECK_LOGIN = "SELECT * FROM  users WHERE (EMAIL = ? OR "
 			+ "MOBILE_NUMBER = ?) AND PASSWORD=?";
 
-	private static final String CHECK_EMAIL_OR_CONTACT = "SELECT EMAIL,MOBILE_NUMBER FROM  USERS "
+	private static final String CHECK_EMAIL_OR_CONTACT = "SELECT EMAIL,MOBILE_NUMBER FROM  users "
 			+ " WHERE EMAIL = ? OR MOBILE_NUMBER = ?";
 
-	private static final String GET_ADDRESS_FOR_USER = "SELECT A.* FROM  ADDRESS A,  USER_ADDRESS UA "
+	private static final String GET_ADDRESS_FOR_USER = "SELECT A.* FROM  address A,  user_address UA "
 			+ " WHERE A.ADDRESS_ID = UA.ADDRESS_ID AND A.ACTIVE=1 AND UA.ACTIVE=1 AND UA.USER_ID=?";
 
-	private static final String ADD_NEW_ADDRESS = "INSERT INTO  ADDRESS (CONTACT_NAME, CONTACT_NUMBER, "
+	private static final String ADD_NEW_ADDRESS = "INSERT INTO  address (CONTACT_NAME, CONTACT_NUMBER, "
 			+ "ADDRESS_LINE1, ADDRESS_LINE2, CITY, STATE, COUNTRY, PINCODE, LANDMARK, "
 			+ "CREATED_BY, CREATED_DATE, ACTIVE, EMAIL) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-	private final static String ADD_ADDRESS_FOR_USER = "INSERT INTO  USER_ADDRESS (USER_ID, ADDRESS_ID,"
+	private final static String ADD_ADDRESS_FOR_USER = "INSERT INTO  user_address (USER_ID, ADDRESS_ID,"
 			+ "CREATED_BY, CREATED_DATE, ACTIVE) VALUES(?,?,?,?,?)";
 	
-	private final static String ADD_USER_ROLE="INSERT INTO  USER_ROLE (USER_ID, ROLE_ID, ACTIVE) VALUES(?,?,?)";
+	private final static String ADD_USER_ROLE="INSERT INTO  user_role (USER_ID, ROLE_ID, ACTIVE) VALUES(?,?,?)";
 	
-	private final static String GET_ROLE_FOR_USER = "SELECT R.* FROM  ROLE R,  USER_ROLE UR,  USERS U WHERE R.ROLE_ID = UR.ROLE_ID AND "
+	private final static String GET_ROLE_FOR_USER = "SELECT R.* FROM  role R,  user_role UR,  users U WHERE R.ROLE_ID = UR.ROLE_ID AND "
 			+ " UR.USER_ID = U.USER_ID AND R.ACTIVE=1 AND UR.ACTIVE=1 AND U.ACTIVE=1 AND UR.USER_ID=?";
 	
-	private final static String GET_COADMIN_USER = "SELECT U.USER_ID FROM USERS U, USER_ROLE UR WHERE "
+	private final static String GET_COADMIN_USER = "SELECT U.USER_ID FROM users U, user_role UR WHERE "
 			+ "U.USER_ID = UR.USER_ID AND UR.ROLE_ID=4";
 	
-	private final static String GET_NOTIFICATION_FOR_USER = "SELECT NOTIFICATION_ID FROM NOTIFICATIONS WHERE USER_ID=? AND ACTIVE=1";
+	private final static String GET_NOTIFICATION_FOR_USER = "SELECT NOTIFICATION_ID FROM notifications WHERE USER_ID=? AND ACTIVE=1";
 	
-	private final static String INSERT_NOTIFICATION_MESSAGE_FOR_USER = "INSERT INTO NOTIFICATION_MESSAGE "
+	private final static String INSERT_NOTIFICATION_MESSAGE_FOR_USER = "INSERT INTO notification_message "
 			+ "(NOTIFICATION_ID, NOTIFICATION_MESSAGE, CREATED_DATE, ACTIVE) VALUES(?,?,?,?)";
 	
-	private final static String UPDATE_ADDRESS = "UPDATE ADDRESS SET CONTACT_NAME=?, CONTACT_NUMBER=?, ADDRESS_LINE1=?, ADDRESS_LINE2=?,"
+	private final static String UPDATE_ADDRESS = "UPDATE address SET CONTACT_NAME=?, CONTACT_NUMBER=?, ADDRESS_LINE1=?, ADDRESS_LINE2=?,"
 			+ "CITY=?, PINCODE=?, LANDMARK=?, MODIFIED_DATE=? WHERE ADDRESS_ID=?";
 	
-	private final static String UPDATE_USER_PERSONAL_INFO = "UPDATE USERS SET NAME=?, EMAIL=?, MOBILE_NUMBER=? WHERE USER_ID=? AND ACTIVE=1";
+	private final static String UPDATE_USER_PERSONAL_INFO = "UPDATE users SET NAME=?, EMAIL=?, MOBILE_NUMBER=? WHERE USER_ID=? AND ACTIVE=1";
 
-	private final static String SAVE_CUSTOMER_QUERY = "INSERT INTO CUSTOMER_QUERY(CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_CONTACT,"
+	private final static String SAVE_CUSTOMER_QUERY = "INSERT INTO customer_query(CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_CONTACT,"
 			+ "SUBJECT, MESSAGE, ACTIVE, CREATED_DATE) VALUES(?,?,?,?,?,?,?)";
 	
-	private final static String GET_USER_BY_ID = "SELECT * FROM USERS WHERE USER_ID=?";
+	private final static String GET_USER_BY_ID = "SELECT * FROM users WHERE USER_ID=?";
 	
-	private final static String VALIDATE_COUPON = "SELECT * FROM COUPONS WHERE COUPONS_NUMBER=? AND ACTIVE=?";
+	private final static String VALIDATE_COUPON = "SELECT * FROM coupons WHERE COUPONS_NUMBER=? AND ACTIVE=?";
 	
 	private final static String SEND_MESSAGE = "SELECT CUSTOMER_NUMBER FROM dotd_customer_number WHERE ACTIVE=1";
 
-	private final static String IS_EMAIL_EXIST = "SELECT * FROM USERS WHERE EMAIL=? AND ACTIVE=1";
+	private final static String IS_EMAIL_EXIST = "SELECT * FROM users WHERE EMAIL=? AND ACTIVE=1";
 	
-	private static final String CHECK_LOGIN_WITH_EMAIL = "SELECT * FROM  USERS WHERE EMAIL = ? AND PASSWORD=?";
+	private static final String CHECK_LOGIN_WITH_EMAIL = "SELECT * FROM  users WHERE EMAIL = ? AND PASSWORD=?";
 	
-	private static final String CREATE_USER_WALLET = "INSERT INTO USERS_WALLET(USER_ID, WALLET_AMOUNT, COMMENT, ACTIVE, CREATED_DATE)"
+	private static final String CREATE_USER_WALLET = "INSERT INTO user_wallet(USER_ID, WALLET_AMOUNT, COMMENT, ACTIVE, CREATED_DATE)"
 			+ " VALUES(?,?,?,?,?)";
 	
-	private static final String UPDATE_USER_WALLET = "UPDATE USERS SET TOTAL_WALLET_AMOUNT=? WHERE USER_ID=?";
+	private static final String UPDATE_USER_WALLET = "UPDATE users SET TOTAL_WALLET_AMOUNT=? WHERE USER_ID=?";
 	
 	public Boolean isUserNameExist(String userName, Connection con) throws Exception {
 

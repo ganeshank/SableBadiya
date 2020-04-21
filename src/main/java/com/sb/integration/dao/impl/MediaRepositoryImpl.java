@@ -16,9 +16,9 @@ import com.sb.integration.vo.MediaVo;
 public class MediaRepositoryImpl implements MediaRepository {
 	
 	private static final String GET_SLIDER_IMAGE_FOR_HOMEPAGE = "SELECT MEDIA_ID, MEDIA_NAME, WEBPATH,"
-			+ " MEDIA_TYPE_ID FROM MEDIA WHERE ACTIVE=1 AND MEDIA_TYPE_ID=2";
+			+ " MEDIA_TYPE_ID FROM media WHERE ACTIVE=1 AND MEDIA_TYPE_ID=2";
 	
-	private static final String PERSIST_MEDIA = "INSERT INTO MEDIA"
+	private static final String PERSIST_MEDIA = "INSERT INTO media"
 			+ "(MEDIA_NAME, WEBPATH, MEDIA_TYPE_ID, ACTIVE, CREATED_BY, CREATED_DATE) VALUES(?,?,?,?,?,?)";
 
 	public List<MediaVo> getHomepageSlider(Connection con, Boolean smallMediaNeeded) {
